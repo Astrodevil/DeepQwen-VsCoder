@@ -1,0 +1,61 @@
+{
+    "name": "deepqwen-coder",
+    "displayName": "DeepQwen Coder",
+    "description": "Chat with AI models to enhance your coding experience.",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.60.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:nebius-ai.chat",
+        "onCommand:nebius-ai.selectCode"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "nebius-ai.chat",
+                "title": "DeepQwen Coder: Chat"
+            },
+            {
+                "command": "nebius-ai.selectCode",
+                "title": "DeepQwen Coder: Select Code"
+            }
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "DeepQwen Coder Settings",
+            "properties": {
+                "nebiusAI.model": {
+                    "type": "string",
+                    "enum": [
+                        "deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct",
+                        "Qwen/Qwen2.5-Coder-7B",
+                        "Qwen/Qwen2.5-Coder-7B-Instruct",
+                        "Qwen/Qwen2.5-Coder-32B-Instruct",
+                        "deepseek-ai/DeepSeek-V3"
+                    ],
+                    "default": "deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct",
+                    "description": "Select the AI model to use"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./"
+    },
+    "devDependencies": {
+        "@types/node": "^14.x.x",
+        "@types/vscode": "^1.96.0",
+        "typescript": "^4.x.x"
+    },
+    "dependencies": {
+        "axios": "^0.24.0",
+        "vsce": "^2.15.0"
+    }
+}
