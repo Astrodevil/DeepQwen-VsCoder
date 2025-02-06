@@ -56,19 +56,75 @@ export class ChatPanel {
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>DeepQwen Coder Chat</title>
             <style>
-                body { font-family: Arial, sans-serif; padding: 20px; background-color: #f4f4f4; }
-                h1 { color: #333; }
-                #chat { border: 1px solid #ccc; height: 300px; overflow-y: scroll; margin-bottom: 10px; padding: 10px; background-color: #fff; border-radius: 5px; }
-                #input { width: 100%; }
-                #modelSelect { width: 100%; margin-bottom: 10px; }
-                textarea { width: 100%; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc; padding: 10px; }
-                button { background-color: #007acc; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; }
-                button:hover { background-color: #005a9e; }
-                .message { margin: 5px 0; }
-                .user { color: #007acc; font-weight: bold; }
-                .ai { color: #d14; font-weight: bold; }
-                pre { background-color: #f0f0f0; padding: 10px; border-radius: 5px; overflow-x: auto; }
-                code { font-family: monospace; }
+                body { 
+                    font-family: 'Arial', sans-serif; 
+                    padding: 20px; 
+                    background-color: #f4f4f4; 
+                    color: #333; 
+                }
+                h1 { 
+                    color: #007acc; 
+                    text-align: center; 
+                }
+                #chat { 
+                    border: 1px solid #ccc; 
+                    height: 300px; 
+                    overflow-y: scroll; 
+                    margin-bottom: 10px; 
+                    padding: 10px; 
+                    background-color: #fff; 
+                    border-radius: 5px; 
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                }
+                #input, #codeContext { 
+                    width: 100%; 
+                    border-radius: 5px; 
+                    border: 1px solid #ccc; 
+                    padding: 10px; 
+                    margin-bottom: 10px; 
+                }
+                button { 
+                    background-color: #007acc; 
+                    color: white; 
+                    padding: 10px; 
+                    border: none; 
+                    border-radius: 5px; 
+                    cursor: pointer; 
+                    transition: background-color 0.3s;
+                }
+                button:hover { 
+                    background-color: #005a9e; 
+                }
+                .message { 
+                    margin: 5px 0; 
+                    padding: 5px; 
+                    border-radius: 5px; 
+                }
+                .user { 
+                    background-color: #e0f7fa; 
+                    color: #007acc; 
+                    font-weight: bold; 
+                }
+                .ai { 
+                    background-color: #ffe0b2; 
+                    color: #d14; 
+                    font-weight: bold; 
+                }
+                pre { 
+                    background-color: #f0f0f0; 
+                    padding: 10px; 
+                    border-radius: 5px; 
+                    overflow-x: auto; 
+                    white-space: pre-wrap; 
+                    word-wrap: break-word; 
+                }
+                code { 
+                    font-family: monospace; 
+                    color: #d14; 
+                    background-color: #f9f9f9; 
+                    padding: 2px 4px; 
+                    border-radius: 3px; 
+                }
             </style>
         </head>
         <body>
@@ -125,15 +181,10 @@ export class ChatPanel {
                     if (message.command === 'receiveMessage') {
                         const formattedResponse = message.text.includes('\\n') 
                             ? '<pre><code>' + message.text.replace(/\\n/g, "<br>") + '</code></pre>' 
-                            : '<div class="message ai">AI: ' + message.text + '</div>';
+                            : '<div class="message ai">AI: <strong>' + message.text + '</strong></div>';
                         document.getElementById('chat').innerHTML += formattedResponse;
                     }
                 });
-
-                // Pre-fill selected code if available
-                if (${JSON.stringify(selectedCode)}) {
-                    document.getElementById('codeContext').value = ${JSON.stringify(selectedCode)};
-                }
             </script>
         </body>
         </html>`;
